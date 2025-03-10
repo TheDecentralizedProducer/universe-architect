@@ -17,13 +17,16 @@ export interface Studio {
 
 export interface Facility {
   id: string;
+  name: string;
   type: FacilityType;
   level: number;
   position: Vector3;
 }
 
 export enum FacilityType {
-  PRODUCTION_STAGE = 'PRODUCTION_STAGE',
+  OFFICE = 'OFFICE',
+  SOUNDSTAGE = 'SOUNDSTAGE',
+  BACKLOT = 'BACKLOT',
   SPECIAL_EFFECTS = 'SPECIAL_EFFECTS',
   MARKETING = 'MARKETING',
   TALENT_AGENCY = 'TALENT_AGENCY',
