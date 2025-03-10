@@ -43,7 +43,7 @@ const darkTheme = createTheme({
 function App() {
   const { studio, initializeStudio } = useGameStore();
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | string | null>(null);
   const [showWelcome, setShowWelcome] = useState(true);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function App() {
         try {
           await initializeStudio('Universal Dreams Studio');
         } catch (e) {
-          setError('Failed to initialize studio. Please refresh the page.');
+          setError(e instanceof Error ? e.message : 'Failed to initialize studio. Please refresh the page.');
           console.error('Failed to initialize studio:', e);
         }
       }
@@ -93,7 +93,7 @@ function App() {
             bgcolor="background.default"
           >
             <Alert severity="error" style={{ maxWidth: 400 }}>
-              {error}
+              {error instanceof Error ? error.message : String(error)}
             </Alert>
           </Box>
         ) : (
