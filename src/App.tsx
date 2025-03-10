@@ -70,7 +70,8 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div style={{ height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' }}>
-        {isLoading ? (
+        {/* Render loading, error, or main content */}
+        {isLoading && (
           <Box
             display="flex"
             flexDirection="column"
@@ -84,7 +85,8 @@ function App() {
               Initializing Universe Architect...
             </Typography>
           </Box>
-        ) : error ? (
+        )}
+        {!isLoading && error && (
           <Box
             display="flex"
             alignItems="center"
@@ -96,7 +98,8 @@ function App() {
               {error instanceof Error ? error.message : String(error)}
             </Alert>
           </Box>
-        ) : (
+        )}
+        {!isLoading && !error && (
           <>
             <StudioLot />
             <Fade in={showWelcome} timeout={1000}>
